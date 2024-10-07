@@ -8,3 +8,13 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables (keep .env.example if you add one)
+.env
+
