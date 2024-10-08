@@ -38,3 +38,7 @@ Thumbs.db
 
 # Docker volumes (not committed)
 postgres_data/
+redis_data/
+
+# Logs
+*.log
