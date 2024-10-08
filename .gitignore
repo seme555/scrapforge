@@ -28,3 +28,13 @@ alembic/versions/__pycache__/
 
 # OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker volumes (not committed)
+postgres_data/
