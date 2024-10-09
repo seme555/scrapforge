@@ -18,3 +18,13 @@
 ### pgAdmin â€” Database View (1,124 Products)
 ![pgAdmin](docs/screenshots/5_pgadmin.png)
 
+> Shows `scraper_db` with all 4 tables (`alembic_version`, `price_history`, `products`, `retailers`) and the `products` table results â€” 1,124 total rows, query completed in 0.225s.
+
+**Tables in `scraper_db`:**
+| Table | Description |
+|---|---|
+| `retailers` | Source website metadata |
+| `products` | 1,124+ unique products with enriched fields |
+| `price_history` | Time-series price snapshots (grows every scrape) |
+
+---
