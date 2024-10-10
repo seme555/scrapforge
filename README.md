@@ -58,3 +58,13 @@
 ---
 
 ## âš™ï¸ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Scraping** | [Scrapy 2.11](https://scrapy.org/) |
+| **JS Rendering** | [Playwright](https://playwright.dev/) via `scrapy-playwright` |
+| **Task Queue** | [Celery 5](https://docs.celeryq.dev/) + [Redis 7](https://redis.io/) |
+| **API** | [FastAPI](https://fastapi.tiangolo.com/) + [Uvicorn](https://www.uvicorn.org/) |
+| **Database** | [PostgreSQL 15](https://www.postgresql.org/) |
+| **ORM** | [SQLAlchemy 2](https://www.sqlalchemy.org/) |
+| **Migrations** | [Alembic](https://alembic.sqlalchemy.org/) |
