@@ -68,3 +68,13 @@
 | **Database** | [PostgreSQL 15](https://www.postgresql.org/) |
 | **ORM** | [SQLAlchemy 2](https://www.sqlalchemy.org/) |
 | **Migrations** | [Alembic](https://alembic.sqlalchemy.org/) |
+| **Validation** | [Pydantic v2](https://docs.pydantic.dev/) |
+| **Infrastructure** | [Docker](https://www.docker.com/) + [Docker Compose](https://docs.docker.com/compose/) |
+
+---
+
+## ðŸ—‚ï¸ Project Structure
+
+```
+scrapforge/
+â”œâ”€â”€ docker-compose.yml          # All 4 services: Postgres, Redis, API, Worker
