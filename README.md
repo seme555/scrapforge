@@ -78,3 +78,13 @@
 ```
 scrapforge/
 â”œâ”€â”€ docker-compose.yml          # All 4 services: Postgres, Redis, API, Worker
+â”œâ”€â”€ Dockerfile                  # Python app image (Playwright-ready)
+â”œâ”€â”€ requirements.txt            # Pinned dependencies
+â”œâ”€â”€ .env                        # Local environment variables
+â”‚
+â”œâ”€â”€ alembic/                    # Database migration scripts
+â”‚   â”œâ”€â”€ env.py
+â”‚   â””â”€â”€ versions/               # Auto-generated migration files
+â”‚
+â”œâ”€â”€ core/
+â”‚   â”œâ”€â”€ database.py             # SQLAlchemy engine & session factory
