@@ -88,3 +88,13 @@ scrapforge/
 â”‚
 â”œâ”€â”€ core/
 â”‚   â”œâ”€â”€ database.py             # SQLAlchemy engine & session factory
+â”‚   â””â”€â”€ models.py               # ORM models: Retailer, Product, PriceHistory
+â”‚
+â”œâ”€â”€ scraper/
+â”‚   â”œâ”€â”€ settings.py             # Scrapy + Playwright config
+â”‚   â”œâ”€â”€ items.py                # Scrapy Items + Pydantic validation schema
+â”‚   â”œâ”€â”€ middlewares.py          # User-Agent rotation (anti-bot)
+â”‚   â”œâ”€â”€ pipelines.py            # Validation pipeline + PostgreSQL write pipeline
+â”‚   â””â”€â”€ spiders/
+â”‚       â”œâ”€â”€ ecommerce_spider.py # Playwright spider â†’ webscraper.io (electronics)
+â”‚       â””â”€â”€ books_spider.py     # Fast HTTP spider â†’ books.toscrape.com (1,000 books)
