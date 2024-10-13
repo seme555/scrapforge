@@ -98,3 +98,13 @@ scrapforge/
 â”‚   â””â”€â”€ spiders/
 â”‚       â”œâ”€â”€ ecommerce_spider.py # Playwright spider â†’ webscraper.io (electronics)
 â”‚       â””â”€â”€ books_spider.py     # Fast HTTP spider â†’ books.toscrape.com (1,000 books)
+â”‚
+â”œâ”€â”€ worker/
+â”‚   â”œâ”€â”€ celery_app.py           # Celery app config, Redis broker, Beat schedule
+â”‚   â””â”€â”€ tasks.py                # 3 Celery tasks: ecommerce, books, full pipeline
+â”‚
+â”œâ”€â”€ api/
+â”‚   â””â”€â”€ main.py                 # FastAPI router with all endpoints
+â”‚
+â””â”€â”€ docs/
+    â””â”€â”€ screenshots/            # Pipeline documentation screenshots
