@@ -128,3 +128,13 @@ Make sure you have the following installed:
 ```bash
 git clone https://github.com/seme555/scrapforge.git
 cd scrapforge
+```
+
+---
+
+### Step 2 â€” Configure Environment Variables
+
+The `.env` file is already set up with local defaults. No changes needed for local development:
+
+```env
+POSTGRES_USER=scraper_user
