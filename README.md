@@ -178,3 +178,13 @@ Run once after first startup to create all tables:
 docker exec scrapforge_api bash -c "alembic revision --autogenerate -m 'initial_schema'"
 
 # Apply migrations to create tables in PostgreSQL
+docker exec scrapforge_api bash -c "alembic upgrade head"
+```
+
+---
+
+### Step 5 â€” Trigger Your First Scrape
+
+**Option A â€” Full pipeline (all spiders, recommended):**
+```bash
+curl -X POST http://localhost:8000/scrape/trigger/all
