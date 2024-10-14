@@ -138,3 +138,13 @@ The `.env` file is already set up with local defaults. No changes needed for loc
 
 ```env
 POSTGRES_USER=scraper_user
+POSTGRES_PASSWORD=scraper_pass
+POSTGRES_DB=scraper_db
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+REDIS_URL=redis://redis:6379/0
+```
+
+---
+
+### Step 3 â€” Build and Start All Services
