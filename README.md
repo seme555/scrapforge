@@ -188,3 +188,13 @@ docker exec scrapforge_api bash -c "alembic upgrade head"
 **Option A â€” Full pipeline (all spiders, recommended):**
 ```bash
 curl -X POST http://localhost:8000/scrape/trigger/all
+```
+
+**Option B â€” Electronics only (webscraper.io):**
+```bash
+curl -X POST http://localhost:8000/scrape/trigger
+```
+
+**Option C â€” Books only (books.toscrape.com, 1,000 books):**
+```bash
+curl -X POST http://localhost:8000/scrape/trigger/books
