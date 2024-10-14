@@ -168,3 +168,13 @@ docker ps
 ```
 
 ---
+
+### Step 4 â€” Apply Database Migrations
+
+Run once after first startup to create all tables:
+
+```bash
+# Generate migration file from SQLAlchemy models
+docker exec scrapforge_api bash -c "alembic revision --autogenerate -m 'initial_schema'"
+
+# Apply migrations to create tables in PostgreSQL
