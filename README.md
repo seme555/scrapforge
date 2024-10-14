@@ -148,3 +148,13 @@ REDIS_URL=redis://redis:6379/0
 ---
 
 ### Step 3 â€” Build and Start All Services
+
+```bash
+docker compose up -d --build
+```
+
+This starts **4 containers**:
+
+| Container | Service | Port |
+|---|---|---|
+| `scrapforge_db` | PostgreSQL 15 | `5432` |
