@@ -118,3 +118,13 @@ scrapforge/
 
 Make sure you have the following installed:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Compose)
+- [Git](https://git-scm.com/)
+- [pgAdmin](https://www.pgadmin.org/download/) *(optional, for visual DB browsing)*
+
+---
+
+### Step 1 â€” Clone the Repository
+
+```bash
+git clone https://github.com/seme555/scrapforge.git
+cd scrapforge
