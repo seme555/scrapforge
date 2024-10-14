@@ -158,3 +158,13 @@ This starts **4 containers**:
 | Container | Service | Port |
 |---|---|---|
 | `scrapforge_db` | PostgreSQL 15 | `5432` |
+| `scrapforge_redis` | Redis 7 | `6379` |
+| `scrapforge_api` | FastAPI | `8000` |
+| `scrapforge_worker` | Celery Worker | â€” |
+
+Verify all are running:
+```bash
+docker ps
+```
+
+---
