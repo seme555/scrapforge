@@ -108,3 +108,13 @@ scrapforge/
 â”‚
 â””â”€â”€ docs/
     â””â”€â”€ screenshots/            # Pipeline documentation screenshots
+```
+
+---
+
+## ðŸš€ Quick Start
+
+### Prerequisites
+
+Make sure you have the following installed:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Compose)
