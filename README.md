@@ -208,3 +208,13 @@ curl -X POST http://localhost:8000/scrape/trigger/books
 
 Open your browser and visit:
 
+| URL | Description |
+|---|---|
+| [`http://localhost:8000/docs`](http://localhost:8000/docs) | **Swagger UI** â€” Interactive API docs |
+| [`http://localhost:8000/api/v1/products`](http://localhost:8000/api/v1/products) | All scraped products (JSON) |
+| [`http://localhost:8000/api/v1/categories`](http://localhost:8000/api/v1/categories) | Product count by category |
+| [`http://localhost:8000/api/v1/products/1/prices`](http://localhost:8000/api/v1/products/1/prices) | Price history for product ID 1 |
+
+---
+
+## ðŸ˜ Connecting pgAdmin (Visual Database Browser)
