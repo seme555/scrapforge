@@ -238,3 +238,13 @@ Open your browser and visit:
 **Useful SQL queries to run in pgAdmin:**
 ```sql
 -- Total products per category
+SELECT category, COUNT(*) FROM products GROUP BY category ORDER BY COUNT(*) DESC;
+
+-- Latest price for each product
+SELECT p.name, p.category, ph.price, ph.currency, ph.scraped_at
+FROM products p
+JOIN price_history ph ON ph.product_id = p.id
+WHERE ph.scraped_at = (
+    SELECT MAX(scraped_at) FROM price_history WHERE product_id = p.id
+)
+ORDER BY p.category, p.name
