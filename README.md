@@ -218,3 +218,13 @@ Open your browser and visit:
 ---
 
 ## ðŸ˜ Connecting pgAdmin (Visual Database Browser)
+
+1. Install and open [pgAdmin](https://www.pgadmin.org/download/)
+2. Right-click **Servers** â†’ **Register** â†’ **Server...**
+3. Fill in the connection details:
+
+| Field | Value |
+|---|---|
+| **Name** | `ScrapForge` *(anything)* |
+| **Host** | `localhost` |
+| **Port** | `5432` |
