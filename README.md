@@ -198,3 +198,13 @@ curl -X POST http://localhost:8000/scrape/trigger
 **Option C â€” Books only (books.toscrape.com, 1,000 books):**
 ```bash
 curl -X POST http://localhost:8000/scrape/trigger/books
+```
+
+> The scrape runs **asynchronously**. The API returns immediately with a `task_id`. The Celery worker processes the job in the background (usually 15â€“60 seconds depending on network).
+
+---
+
+### Step 6 â€” View the Results
+
+Open your browser and visit:
+
