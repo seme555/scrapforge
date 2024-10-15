@@ -228,3 +228,13 @@ Open your browser and visit:
 | **Name** | `ScrapForge` *(anything)* |
 | **Host** | `localhost` |
 | **Port** | `5432` |
+| **Username** | `scraper_user` |
+| **Password** | `scraper_pass` |
+| **Database** | `scraper_db` |
+
+4. Expand: `ScrapForge â†’ Databases â†’ scraper_db â†’ Schemas â†’ public â†’ Tables`
+5. Right-click any table â†’ **View/Edit Data â†’ All Rows**
+
+**Useful SQL queries to run in pgAdmin:**
+```sql
+-- Total products per category
