@@ -248,3 +248,13 @@ WHERE ph.scraped_at = (
     SELECT MAX(scraped_at) FROM price_history WHERE product_id = p.id
 )
 ORDER BY p.category, p.name
+LIMIT 50;
+
+-- Time-series: how a product's price changes over scrapes
+SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER BY ph.scraped_at;
+```
+
+---
+
+## ðŸ“¡ API Reference
+
