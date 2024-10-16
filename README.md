@@ -278,3 +278,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 ```json
 [
   {
+    "id": 1,
+    "name": "Lenovo IdeaPad 320-15ABR",
+    "sku": "88",
+    "category": "laptops",
+    "brand": null,
+    "description": "Lenovo IdeaPad 320, 15.6\" HD, A9-9420 3GHz...",
+    "image_url": "https://webscraper.io/.../88.jpg",
+    "rating": 3.0,
+    "review_count": null,
+    "url": "https://webscraper.io/.../product/88",
