@@ -298,3 +298,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 ## ðŸ•·ï¸ Spiders
 
 ### `ecommerce` â€” Electronics (webscraper.io)
+- **Rendering:** Playwright (handles JavaScript SPAs)
+- **Categories:** Laptops, Tablets, Phones, Touch Phones
+- **Products:** ~147 unique items
+- **Trigger:** `POST /scrape/trigger`
+
+### `books` â€” Books to Scrape (books.toscrape.com)
+- **Rendering:** Standard HTTP (high-performance, no JS needed)
+- **Categories:** 50 genres (Fiction, Mystery, Science, etc.)
+- **Products:** 1,000 unique books
+- **Trigger:** `POST /scrape/trigger/books`
