@@ -268,3 +268,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 
 ### Data Endpoints
 
+| Method | Endpoint | Query Params | Description |
+|---|---|---|---|
+| `GET` | `/api/v1/products` | `?skip=0&limit=100&category=laptops` | List all products with enriched metadata |
+| `GET` | `/api/v1/categories` | â€” | Product counts per category |
+| `GET` | `/api/v1/products/{id}/prices` | â€” | Full price history for one product |
+
+### Sample Response â€” `/api/v1/products`
+```json
+[
+  {
