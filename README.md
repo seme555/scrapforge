@@ -258,3 +258,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 
 ## ðŸ“¡ API Reference
 
+### Scraping Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/scrape/trigger` | Run electronics spider (webscraper.io) |
+| `POST` | `/scrape/trigger/books` | Run books spider (1,000 books) |
+| `POST` | `/scrape/trigger/all` | Run **all spiders** â€” maximum data |
+
+### Data Endpoints
+
