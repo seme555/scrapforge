@@ -288,3 +288,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
     "rating": 3.0,
     "review_count": null,
     "url": "https://webscraper.io/.../product/88",
+    "retailer": "WebScraper Test Site"
+  }
+]
+```
+
+---
+
+## ðŸ•·ï¸ Spiders
+
+### `ecommerce` â€” Electronics (webscraper.io)
