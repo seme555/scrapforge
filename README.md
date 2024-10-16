@@ -308,3 +308,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 - **Categories:** 50 genres (Fiction, Mystery, Science, etc.)
 - **Products:** 1,000 unique books
 - **Trigger:** `POST /scrape/trigger/books`
+
+---
+
+## ðŸ›¡ï¸ Anti-Bot Measures
+
+- **User-Agent Rotation** â€” Random browser User-Agent on every request
+- **Playwright Rendering** â€” Full Chrome browser for JS-heavy pages
+- **Rate Limiting** â€” Configurable download delay between requests
+- **Proxy Scaffolding** â€” `ProxyRotatorMiddleware` ready for residential proxy integration
+
