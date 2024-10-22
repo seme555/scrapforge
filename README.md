@@ -328,3 +328,13 @@ Every time you call `/scrape/trigger/all`, the system:
 3. **Appends** a new `price_history` row per product
 
 This creates a **time-series price intelligence dataset**. Run it daily and you'll track price changes over time across 1,000+ products.
+
+```bash
+# Example: run full scrape 5 times to build history
+for i in 1 2 3 4 5; do
+  curl -X POST http://localhost:8000/scrape/trigger/all
+  sleep 30
+done
+```
+
+---
