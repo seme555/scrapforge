@@ -338,3 +338,13 @@ done
 ```
 
 ---
+
+## ðŸ”„ Stopping and Restarting
+
+```bash
+# Stop all services (keeps data)
+docker compose down
+
+# Restart everything
+docker compose up -d
+
