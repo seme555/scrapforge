@@ -318,3 +318,13 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 - **Rate Limiting** â€” Configurable download delay between requests
 - **Proxy Scaffolding** â€” `ProxyRotatorMiddleware` ready for residential proxy integration
 
+---
+
+## ðŸ“ˆ Data Growth Pattern
+
+Every time you call `/scrape/trigger/all`, the system:
+1. Re-scrapes **all** product pages
+2. **Upserts** product metadata (price, rating, description)
+3. **Appends** a new `price_history` row per product
+
+This creates a **time-series price intelligence dataset**. Run it daily and you'll track price changes over time across 1,000+ products.
