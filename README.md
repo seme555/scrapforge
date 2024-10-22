@@ -348,3 +348,13 @@ docker compose down
 # Restart everything
 docker compose up -d
 
+# Full reset (DELETES all data)
+docker compose down -v
+```
+
+---
+
+## ðŸ§° Useful Docker Commands
+
+```bash
+# View live logs from the Celery worker
