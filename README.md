@@ -388,3 +388,13 @@ products
 â”œâ”€â”€ url (unique)
 â”œâ”€â”€ sku
 â”œâ”€â”€ category          â† indexed for fast filtering
+â”œâ”€â”€ description
+â”œâ”€â”€ image_url
+â”œâ”€â”€ rating
+â”œâ”€â”€ review_count
+â”œâ”€â”€ brand
+â”œâ”€â”€ created_at
+â””â”€â”€ updated_at
+
+price_history
+â”œâ”€â”€ id (PK, BigInteger)
