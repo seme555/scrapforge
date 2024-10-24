@@ -378,3 +378,13 @@ docker exec scrapforge_worker bash -c "python -m scrapy crawl books"
 retailers
 â”œâ”€â”€ id (PK)
 â”œâ”€â”€ name
+â”œâ”€â”€ domain (unique)
+â””â”€â”€ created_at
+
+products
+â”œâ”€â”€ id (PK)
+â”œâ”€â”€ retailer_id (FK â†’ retailers)
+â”œâ”€â”€ name
+â”œâ”€â”€ url (unique)
+â”œâ”€â”€ sku
+â”œâ”€â”€ category          â† indexed for fast filtering
