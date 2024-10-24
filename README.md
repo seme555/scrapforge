@@ -358,3 +358,13 @@ docker compose down -v
 
 ```bash
 # View live logs from the Celery worker
+docker logs scrapforge_worker -f
+
+# View API logs
+docker logs scrapforge_api -f
+
+# Open a database shell
+docker exec -it scrapforge_db psql -U scraper_user -d scraper_db
+
+# Run a spider directly (for testing)
+docker exec scrapforge_worker bash -c "python -m scrapy crawl books"
