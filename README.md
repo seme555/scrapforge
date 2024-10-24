@@ -368,3 +368,13 @@ docker exec -it scrapforge_db psql -U scraper_user -d scraper_db
 
 # Run a spider directly (for testing)
 docker exec scrapforge_worker bash -c "python -m scrapy crawl books"
+```
+
+---
+
+## ðŸ—„ï¸ Database Schema
+
+```
+retailers
+â”œâ”€â”€ id (PK)
+â”œâ”€â”€ name
