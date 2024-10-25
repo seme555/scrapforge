@@ -1,0 +1,10 @@
+# ------------- Scraping Engine -------------
+scrapy==2.11.1
+scrapy-playwright==0.0.33
+playwright==1.42.0
+
+# ------------- Data Validation -------------
+pydantic
+
+# ------------- Database & ORM -------------
+sqlalchemy>=2.0.29
