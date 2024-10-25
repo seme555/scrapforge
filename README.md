@@ -398,3 +398,13 @@ products
 
 price_history
 â”œâ”€â”€ id (PK, BigInteger)
+â”œâ”€â”€ product_id (FK â†’ products)
+â”œâ”€â”€ price
+â”œâ”€â”€ currency
+â”œâ”€â”€ in_stock
+â””â”€â”€ scraped_at        â† indexed for time-series queries
+```
+
+---
+
+## ðŸ“‹ License
