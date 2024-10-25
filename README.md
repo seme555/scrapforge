@@ -408,3 +408,5 @@ price_history
 ---
 
 ## ðŸ“‹ License
+
+MIT License â€” free to use, modify and distribute.
