@@ -18,3 +18,5 @@ RUN playwright install chromium
 # Copy app code
 COPY . .
 
+# Run FastAPI by default
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
