@@ -18,3 +18,13 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-scraper_user} -d ${POSTGRES_DB:-scraper_db}"]
       interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # -------------------------------------
+  # 2. MESSAGE BROKER LAYER
+  # -------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: scrapforge_redis
+    ports:
