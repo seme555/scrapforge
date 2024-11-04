@@ -58,3 +58,13 @@ services:
         condition: service_healthy
 
   # -------------------------------------
+  # 4. CELERY WORKER LAYER
+  # -------------------------------------
+  worker:
+    build: .
+    container_name: scrapforge_worker
+    command: ["celery", "-A", "worker.celery_app", "worker", "--loglevel=info"]
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=${POSTGRES_USER:-scraper_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scraper_pass}
