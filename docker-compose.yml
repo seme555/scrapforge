@@ -68,3 +68,13 @@ services:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=${POSTGRES_USER:-scraper_user}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scraper_pass}
+      - POSTGRES_DB=${POSTGRES_DB:-scraper_db}
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
