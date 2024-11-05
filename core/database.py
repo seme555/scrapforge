@@ -18,3 +18,13 @@ DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST
 engine = create_engine(DATABASE_URL, echo=False)
 
 # SessionLocal is the factory for new Session objects
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Base class for our models
+Base = declarative_base()
+
+def get_db():
+    """Dependency to get a DB session."""
+    db = SessionLocal()
+    try:
+        yield db
