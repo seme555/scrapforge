@@ -38,3 +38,13 @@ class Product(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     retailer = relationship("Retailer", back_populates="products")
+    price_history = relationship("PriceHistory", back_populates="product", cascade="all, delete")
+
+    __table_args__ = (
+        Index('idx_product_retailer_sku', 'retailer_id', 'sku', unique=True),
+    )
+
+
+class PriceHistory(Base):
+    """Time-series price tracking data per product."""
+    __tablename__ = "price_history"
