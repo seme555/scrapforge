@@ -28,3 +28,13 @@ class Product(Base):
     name = Column(String(500), nullable=False)
     url = Column(String(1000), unique=True, nullable=False)
     sku = Column(String(100), index=True)
+    brand = Column(String(100))
+    category = Column(String(100), index=True)            # NEW: e.g. "laptops", "tablets"
+    description = Column(Text, nullable=True)             # NEW: product description
+    image_url = Column(String(1000), nullable=True)       # NEW: product image URL
+    rating = Column(Float, nullable=True)                  # NEW: star rating 0.0â€“5.0
+    review_count = Column(Integer, nullable=True)          # NEW: number of reviews
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    retailer = relationship("Retailer", back_populates="products")
