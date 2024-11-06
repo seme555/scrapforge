@@ -18,3 +18,13 @@ class Retailer(Base):
 
     products = relationship("Product", back_populates="retailer", cascade="all, delete")
 
+
+class Product(Base):
+    """Stores enriched product information."""
+    __tablename__ = "products"
+
+    id = Column(Integer, primary_key=True, index=True)
+    retailer_id = Column(Integer, ForeignKey("retailers.id"), nullable=False)
+    name = Column(String(500), nullable=False)
+    url = Column(String(1000), unique=True, nullable=False)
+    sku = Column(String(100), index=True)
