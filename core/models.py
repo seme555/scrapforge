@@ -48,3 +48,13 @@ class Product(Base):
 class PriceHistory(Base):
     """Time-series price tracking data per product."""
     __tablename__ = "price_history"
+
+    id = Column(BigInteger, primary_key=True, index=True)
+    product_id = Column(Integer, ForeignKey("products.id"), nullable=False, index=True)
+    price = Column(Float, nullable=True)
+    currency = Column(String(10), default="USD")
+    in_stock = Column(Boolean, default=True)
+    scraped_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
+
+    product = relationship("Product", back_populates="price_history")
+
