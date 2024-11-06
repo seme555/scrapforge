@@ -58,3 +58,6 @@ class PriceHistory(Base):
 
     product = relationship("Product", back_populates="price_history")
 
+    __table_args__ = (
+        Index('idx_product_id_scraped_at', 'product_id', 'scraped_at'),
+    )
