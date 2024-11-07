@@ -28,3 +28,13 @@ class ProductValidator(BaseModel):
 
     @field_validator("rating")
     @classmethod
+    def rating_range(cls, v):
+        if v is not None and not (0.0 <= v <= 5.0):
+            raise ValueError("Rating must be between 0 and 5")
+        return v
+
+
+class ProductItem(scrapy.Item):
+    name = scrapy.Field()
+    url = scrapy.Field()
+    sku = scrapy.Field()
