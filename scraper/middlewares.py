@@ -18,3 +18,5 @@ class ProxyRotatorMiddleware:
     In production, integrates with BrightData or ScraperAPI.
     """
     def process_request(self, request, spider):
+        # request.meta['proxy'] = "http://username:password@proxyserver:port"
+        pass
