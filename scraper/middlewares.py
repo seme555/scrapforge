@@ -8,3 +8,13 @@ class RandomUserAgentMiddleware:
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0"
     ]
+
+    def process_request(self, request, spider):
+        ua = random.choice(self.USER_AGENTS)
+        request.headers['User-Agent'] = ua
+
+class ProxyRotatorMiddleware:
+    """Mock ScrapForge Proxy Rotator.
+    In production, integrates with BrightData or ScraperAPI.
+    """
+    def process_request(self, request, spider):
