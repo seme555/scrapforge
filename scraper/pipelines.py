@@ -38,3 +38,13 @@ class PostgresPipeline:
     into PostgreSQL using SQLAlchemy.
 
     Strategy:
+      - Retailer: get or create
+      - Product: get or create by (retailer_id, sku); update mutable fields
+      - PriceHistory: always insert a new snapshot (idempotent append)
+    """
+
+    def open_spider(self, spider):
+        self.db = SessionLocal()
+        spider.logger.info("[PostgresPipeline] Database session opened.")
+
+    def close_spider(self, spider):
