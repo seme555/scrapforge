@@ -28,3 +28,13 @@ class ValidationPipeline:
             spider.logger.warning(
                 f"[VALIDATION FAIL] SKU={item.get('sku')} URL={item.get('url')} "
                 f"Errors={errors}"
+            )
+            raise DropItem(f"Validation failed: {errors}")
+
+
+class PostgresPipeline:
+    """
+    Stage 2: Upsert enriched product data and append time-series price history
+    into PostgreSQL using SQLAlchemy.
+
+    Strategy:
