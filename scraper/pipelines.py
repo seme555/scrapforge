@@ -58,3 +58,13 @@ class PostgresPipeline:
                 self.db.query(Retailer)
                 .filter_by(domain=item["retailer_domain"])
                 .first()
+            )
+            if not retailer:
+                retailer = Retailer(
+                    name=item["retailer_name"],
+                    domain=item["retailer_domain"]
+                )
+                self.db.add(retailer)
+                self.db.flush()  # Get the ID without full commit
+
+            # --- 2. Upsert Product ---
