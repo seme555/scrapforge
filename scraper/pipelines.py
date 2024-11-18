@@ -18,3 +18,13 @@ class ValidationPipeline:
     Stage 1: Validate incoming items against the Pydantic schema.
     Drops malformed items with full error logging for observability.
     """
+
+    def process_item(self, item, spider):
+        try:
+            ProductValidator(**dict(item))
+            return item
+        except ValidationError as e:
+            errors = e.errors()
+            spider.logger.warning(
+                f"[VALIDATION FAIL] SKU={item.get('sku')} URL={item.get('url')} "
+                f"Errors={errors}"
