@@ -48,3 +48,13 @@ class PostgresPipeline:
         spider.logger.info("[PostgresPipeline] Database session opened.")
 
     def close_spider(self, spider):
+        self.db.close()
+        spider.logger.info("[PostgresPipeline] Database session closed.")
+
+    def process_item(self, item, spider):
+        try:
+            # --- 1. Get or create Retailer ---
+            retailer = (
+                self.db.query(Retailer)
+                .filter_by(domain=item["retailer_domain"])
+                .first()
