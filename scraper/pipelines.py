@@ -108,3 +108,11 @@ class PostgresPipeline:
             self.db.add(history)
             self.db.commit()
 
+        except Exception as e:
+            self.db.rollback()
+            spider.logger.error(
+                f"[DB ERROR] Failed to save SKU={item.get('sku')}: {e}"
+            )
+            raise DropItem(f"Database error: {e}")
+
+        return item
