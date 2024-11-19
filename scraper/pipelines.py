@@ -98,3 +98,13 @@ class PostgresPipeline:
                 product.rating = item.get("rating") if item.get("rating") is not None else product.rating
                 product.review_count = item.get("review_count") if item.get("review_count") is not None else product.review_count
 
+            # --- 3. Append PriceHistory snapshot ---
+            history = PriceHistory(
+                product_id=product.id,
+                price=item.get("price"),
+                currency=item.get("currency", "USD"),
+                in_stock=item.get("in_stock", True),
+            )
+            self.db.add(history)
+            self.db.commit()
+
