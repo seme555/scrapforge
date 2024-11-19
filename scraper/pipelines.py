@@ -78,3 +78,13 @@ class PostgresPipeline:
                 product = Product(
                     retailer_id=retailer.id,
                     name=item["name"],
+                    url=str(item["url"]),
+                    sku=item["sku"],
+                    category=item.get("category"),
+                    description=item.get("description"),
+                    image_url=item.get("image_url"),
+                    rating=item.get("rating"),
+                    review_count=item.get("review_count"),
+                )
+                self.db.add(product)
+                self.db.flush()
