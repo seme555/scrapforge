@@ -68,3 +68,13 @@ class PostgresPipeline:
                 self.db.flush()  # Get the ID without full commit
 
             # --- 2. Upsert Product ---
+            product = (
+                self.db.query(Product)
+                .filter_by(retailer_id=retailer.id, sku=item["sku"])
+                .first()
+            )
+
+            if not product:
+                product = Product(
+                    retailer_id=retailer.id,
+                    name=item["name"],
