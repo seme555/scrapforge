@@ -88,3 +88,13 @@ class PostgresPipeline:
                 )
                 self.db.add(product)
                 self.db.flush()
+            else:
+                # Update mutable enriched fields on re-scrape
+                product.name = item["name"]
+                product.url = str(item["url"])
+                product.category = item.get("category") or product.category
+                product.description = item.get("description") or product.description
+                product.image_url = item.get("image_url") or product.image_url
+                product.rating = item.get("rating") if item.get("rating") is not None else product.rating
+                product.review_count = item.get("review_count") if item.get("review_count") is not None else product.review_count
+
