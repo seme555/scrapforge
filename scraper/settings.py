@@ -38,3 +38,13 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     'scraper.pipelines.ValidationPipeline': 300,
     'scraper.pipelines.PostgresPipeline': 800,
+}
+
+# Playwright settings
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": True,
+}
+
+# Set settings whose default value is deprecated to a future-proof value
+REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
