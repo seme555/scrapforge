@@ -28,3 +28,13 @@ DOWNLOAD_HANDLERS = {
 
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
+# Enable Middlewares
+DOWNLOADER_MIDDLEWARES = {
+    'scraper.middlewares.RandomUserAgentMiddleware': 400,
+    # 'scraper.middlewares.ProxyRotatorMiddleware': 410,
+}
+
+# Enable Pipelines
+ITEM_PIPELINES = {
+    'scraper.pipelines.ValidationPipeline': 300,
+    'scraper.pipelines.PostgresPipeline': 800,
