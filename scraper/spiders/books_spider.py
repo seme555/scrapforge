@@ -18,3 +18,13 @@ class BooksSpider(scrapy.Spider):
       - title, price, currency, in_stock status
       - star rating, category / genre
       - cover image URL
+      - per-genre breadcrumb category
+    """
+    name = "books"
+    allowed_domains = ["books.toscrape.com"]
+    start_urls = ["https://books.toscrape.com/catalogue/page-1.html"]
+
+    custom_settings = {
+        # No Playwright needed â€” this site is static HTML
+        "DOWNLOAD_HANDLERS": {},
+        "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
