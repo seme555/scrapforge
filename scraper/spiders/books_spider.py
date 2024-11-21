@@ -28,3 +28,13 @@ class BooksSpider(scrapy.Spider):
         # No Playwright needed â€” this site is static HTML
         "DOWNLOAD_HANDLERS": {},
         "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
+        "CONCURRENT_REQUESTS": 16,
+        "DOWNLOAD_DELAY": 0.25,
+    }
+
+    def parse(self, response):
+        """Parse a paginated book listing page."""
+        books = response.css("article.product_pod")
+        self.logger.info(
+            f"[BOOKS] {response.url} â€” {len(books)} books found"
+        )
