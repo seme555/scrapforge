@@ -8,3 +8,13 @@ STAR_RATING = {
 }
 
 
+class BooksSpider(scrapy.Spider):
+    """
+    High-volume spider targeting books.toscrape.com.
+
+    A site purpose-built for scraping practice with 1,000 books
+    across 50 genres. Uses standard HTTP (no Playwright needed)
+    for maximum throughput. Extracts:
+      - title, price, currency, in_stock status
+      - star rating, category / genre
+      - cover image URL
