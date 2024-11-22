@@ -68,3 +68,13 @@ class BooksSpider(scrapy.Spider):
         raw_price = book.css(".price_color::text").get("").strip()
         price = None
         if raw_price:
+            try:
+                price = float(re.sub(r"[^\d.]", "", raw_price))
+            except ValueError:
+                pass
+
+        # Star rating via CSS class name
+        rating_class = book.css("p.star-rating::attr(class)").get("")
+        rating_word = rating_class.replace("star-rating", "").strip()
+        rating = STAR_RATING.get(rating_word)
+
