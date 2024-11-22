@@ -48,3 +48,13 @@ class BooksSpider(scrapy.Spider):
         next_page = response.css("li.next a::attr(href)").get()
         if next_page:
             yield response.follow(next_page, callback=self.parse)
+
+    def _extract_book(self, book, response):
+        """Extract all available fields from a book card."""
+        # Title
+        name = book.css("h3 a::attr(title)").get()
+        if not name:
+            return None
+
+        # Relative URL to book detail page
+        link = book.css("h3 a::attr(href)").get()
