@@ -58,3 +58,13 @@ class BooksSpider(scrapy.Spider):
 
         # Relative URL to book detail page
         link = book.css("h3 a::attr(href)").get()
+        if not link:
+            return None
+
+        url = response.urljoin(link)
+        sku = url.rstrip("/").split("/")[-2]  # slug is second-to-last segment
+
+        # Price â€” "Â£12.34" â†’ 12.34 USD equivalent for demo
+        raw_price = book.css(".price_color::text").get("").strip()
+        price = None
+        if raw_price:
