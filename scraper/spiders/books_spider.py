@@ -38,3 +38,13 @@ class BooksSpider(scrapy.Spider):
         self.logger.info(
             f"[BOOKS] {response.url} â€” {len(books)} books found"
         )
+
+        for book in books:
+            item = self._extract_book(book, response)
+            if item:
+                yield item
+
+        # Follow pagination (50 pages Ã— 20 books = 1,000 total)
+        next_page = response.css("li.next a::attr(href)").get()
+        if next_page:
+            yield response.follow(next_page, callback=self.parse)
