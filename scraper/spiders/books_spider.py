@@ -78,3 +78,13 @@ class BooksSpider(scrapy.Spider):
         rating_word = rating_class.replace("star-rating", "").strip()
         rating = STAR_RATING.get(rating_word)
 
+        # In-stock status
+        availability_text = book.css(".availability::text").getall()
+        in_stock = "in stock" in " ".join(availability_text).lower()
+
+        # Cover image
+        image_url = book.css("img.thumbnail::attr(src)").get()
+        if image_url:
+            image_url = response.urljoin(image_url)
+
+        # Category from breadcrumb (e.g. "Mystery", "Science Fiction")
