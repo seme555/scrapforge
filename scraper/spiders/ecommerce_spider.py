@@ -48,3 +48,13 @@ class EcommerceSpider(scrapy.Spider):
 
         if page:
             try:
+                await page.wait_for_selector(".thumbnail", timeout=12000)
+            except Exception:
+                self.logger.warning(f"Timeout waiting for products on {response.url}")
+            finally:
+                await page.close()
+
+        products = response.css(".thumbnail")
+        self.logger.info(
+            f"[{category.upper()}] {response.url} â€” {len(products)} products found"
+        )
