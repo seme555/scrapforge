@@ -98,3 +98,11 @@ class BooksSpider(scrapy.Spider):
         item["price"] = price
         item["currency"] = "GBP"
         item["in_stock"] = in_stock
+        item["category"] = category
+        item["description"] = None   # Not on listing page; would need detail request
+        item["image_url"] = image_url
+        item["rating"] = rating
+        item["review_count"] = None
+        item["retailer_name"] = "Books to Scrape"
+        item["retailer_domain"] = "books.toscrape.com"
+        return item
