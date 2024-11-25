@@ -38,3 +38,13 @@ class EcommerceSpider(scrapy.Spider):
                     "playwright": True,
                     "playwright_include_page": True,
                     "category": category,
+                }
+            )
+
+    async def parse(self, response):
+        """Parse a product listing page and follow pagination."""
+        page = response.meta.get("playwright_page")
+        category = response.meta.get("category", "unknown")
+
+        if page:
+            try:
