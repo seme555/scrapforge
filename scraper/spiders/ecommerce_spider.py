@@ -28,3 +28,13 @@ class EcommerceSpider(scrapy.Spider):
     name = "ecommerce"
     allowed_domains = ["webscraper.io"]
 
+    def start_requests(self):
+        for path, category in CATEGORIES:
+            yield scrapy.Request(
+                url=f"{BASE_URL}/{path}",
+                callback=self.parse,
+                errback=self.errback,
+                meta={
+                    "playwright": True,
+                    "playwright_include_page": True,
+                    "category": category,
