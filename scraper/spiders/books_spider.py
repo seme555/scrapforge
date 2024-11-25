@@ -88,3 +88,13 @@ class BooksSpider(scrapy.Spider):
             image_url = response.urljoin(image_url)
 
         # Category from breadcrumb (e.g. "Mystery", "Science Fiction")
+        breadcrumb = response.css("ul.breadcrumb li a::text").getall()
+        category = breadcrumb[-1].strip().lower() if len(breadcrumb) >= 2 else "books"
+
+        item = ProductItem()
+        item["name"] = name.strip()
+        item["url"] = url
+        item["sku"] = sku
+        item["price"] = price
+        item["currency"] = "GBP"
+        item["in_stock"] = in_stock
