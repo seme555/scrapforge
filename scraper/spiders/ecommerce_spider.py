@@ -78,3 +78,13 @@ class EcommerceSpider(scrapy.Spider):
                 }
             )
 
+    def _extract_product(self, product, response, category: str):
+        """
+        Extract all fields from a single product card.
+        Returns a populated ProductItem or None if critical fields are missing.
+        """
+        # --- Required fields ---
+        name = (
+            product.css("a.title::attr(title)").get()
+            or product.css("a.title::text").get()
+            or ""
