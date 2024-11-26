@@ -88,3 +88,13 @@ class EcommerceSpider(scrapy.Spider):
             product.css("a.title::attr(title)").get()
             or product.css("a.title::text").get()
             or ""
+        ).strip()
+
+        link = product.css("a.title::attr(href)").get()
+
+        if not name or not link:
+            self.logger.debug("Skipping product card â€” missing name or link")
+            return None
+
+        url = response.urljoin(link)
+        sku = url.rstrip("/").split("/")[-1]
