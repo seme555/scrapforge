@@ -68,3 +68,13 @@ class EcommerceSpider(scrapy.Spider):
         next_page = response.css("a[rel='next']::attr(href)").get()
         if next_page:
             yield scrapy.Request(
+                url=response.urljoin(next_page),
+                callback=self.parse,
+                errback=self.errback,
+                meta={
+                    "playwright": True,
+                    "playwright_include_page": True,
+                    "category": category,
+                }
+            )
+
