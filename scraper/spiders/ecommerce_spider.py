@@ -58,3 +58,13 @@ class EcommerceSpider(scrapy.Spider):
         self.logger.info(
             f"[{category.upper()}] {response.url} â€” {len(products)} products found"
         )
+
+        for product in products:
+            item = self._extract_product(product, response, category)
+            if item:
+                yield item
+
+        # Follow pagination
+        next_page = response.css("a[rel='next']::attr(href)").get()
+        if next_page:
+            yield scrapy.Request(
