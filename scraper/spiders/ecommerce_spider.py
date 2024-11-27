@@ -108,3 +108,13 @@ class EcommerceSpider(scrapy.Spider):
         ).strip()
 
         price = None
+        if raw_price:
+            try:
+                price = float(raw_price.replace("$", "").replace(",", "").strip())
+            except ValueError:
+                self.logger.debug(f"Could not parse price: {raw_price!r}")
+
+        # --- Description ---
+        description = (
+            product.css("p.description::text").get()
+            or product.css(".description::text").get()
