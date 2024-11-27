@@ -138,3 +138,13 @@ class EcommerceSpider(scrapy.Spider):
         ).strip()
         review_count = None
         if review_text:
+            try:
+                review_count = int("".join(filter(str.isdigit, review_text)))
+            except ValueError:
+                pass
+
+        item = ProductItem()
+        item["name"] = name
+        item["url"] = url
+        item["sku"] = sku
+        item["price"] = price
