@@ -98,3 +98,13 @@ class EcommerceSpider(scrapy.Spider):
 
         url = response.urljoin(link)
         sku = url.rstrip("/").split("/")[-1]
+
+        # --- Price extraction (multiple fallback selectors) ---
+        raw_price = (
+            product.css("h4.pull-right.price::text").get()
+            or product.css(".price::text").get()
+            or product.css("h4.price::text").get()
+            or ""
+        ).strip()
+
+        price = None
