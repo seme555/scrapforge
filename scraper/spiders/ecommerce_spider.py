@@ -128,3 +128,13 @@ class EcommerceSpider(scrapy.Spider):
 
         # --- Star Rating (count filled stars) ---
         rating_stars = product.css("span.ws-icon.ws-icon-star")
+        rating = float(len(rating_stars)) if rating_stars else None
+
+        # --- Review count ---
+        review_text = (
+            product.css("div.ratings p::text").get()
+            or product.css(".ratings::text").get()
+            or ""
+        ).strip()
+        review_count = None
+        if review_text:
