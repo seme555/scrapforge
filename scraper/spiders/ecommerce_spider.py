@@ -118,3 +118,13 @@ class EcommerceSpider(scrapy.Spider):
         description = (
             product.css("p.description::text").get()
             or product.css(".description::text").get()
+            or ""
+        ).strip() or None
+
+        # --- Image URL ---
+        image_url = product.css("img.img-responsive::attr(src)").get()
+        if image_url:
+            image_url = response.urljoin(image_url)
+
+        # --- Star Rating (count filled stars) ---
+        rating_stars = product.css("span.ws-icon.ws-icon-star")
