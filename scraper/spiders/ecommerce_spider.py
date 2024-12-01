@@ -158,3 +158,12 @@ class EcommerceSpider(scrapy.Spider):
         item["retailer_name"] = "WebScraper Test Site"
         item["retailer_domain"] = "webscraper.io"
         return item
+
+    async def errback(self, failure):
+        """Clean up Playwright page and log request failures."""
+        page = failure.request.meta.get("playwright_page")
+        if page:
+            await page.close()
+        self.logger.error(
+            f"[ERRBACK] Request to {failure.request.url} failed: {failure.value}"
+        )
