@@ -148,3 +148,13 @@ class EcommerceSpider(scrapy.Spider):
         item["url"] = url
         item["sku"] = sku
         item["price"] = price
+        item["currency"] = "USD"
+        item["in_stock"] = True
+        item["category"] = category
+        item["description"] = description
+        item["image_url"] = image_url
+        item["rating"] = rating
+        item["review_count"] = review_count
+        item["retailer_name"] = "WebScraper Test Site"
+        item["retailer_domain"] = "webscraper.io"
+        return item
