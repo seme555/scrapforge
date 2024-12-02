@@ -18,3 +18,13 @@ def _run_spider(spider_name: str) -> subprocess.CompletedProcess:
 
 
 @app.task(bind=True)
+def trigger_ecommerce_scrape(self):
+    """
+    Celery task: runs the e-commerce (webscraper.io) spider.
+    Target: ~147 products across laptops, tablets, phones.
+    """
+    result = _run_spider("ecommerce")
+    if result.returncode != 0:
+        raise RuntimeError(f"ecommerce spider failed:\n{result.stderr[-2000:]}")
+    return "ecommerce scrape completed successfully"
+
