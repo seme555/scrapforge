@@ -18,3 +18,7 @@ app.conf.beat_schedule = {
     },
 }
 
+app.conf.timezone = 'UTC'
+
+if __name__ == '__main__':
+    app.start()
