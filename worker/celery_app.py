@@ -8,3 +8,13 @@ app = Celery(
     broker=REDIS_URL,
     backend=REDIS_URL,
     include=['worker.tasks']
+)
+
+# Optional scheduling (Celery Beat)
+app.conf.beat_schedule = {
+    'scrape-ecommerce-daily': {
+        'task': 'worker.tasks.trigger_ecommerce_scrape',
+        'schedule': 86400.0, # Every 24 hours
+    },
+}
+
