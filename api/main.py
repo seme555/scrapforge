@@ -18,3 +18,13 @@ app = FastAPI(
 
 
 @app.get("/")
+def read_root():
+    return {"status": "Online", "service": "ScrapForge API", "version": "2.0.0"}
+
+
+@app.post("/scrape/trigger", tags=["scraping"])
+def trigger_scrape():
+    """Dispatch an async Celery task to scrape the e-commerce (webscraper.io) spider."""
+    task = trigger_ecommerce_scrape.delay()
+    return {"message": "E-commerce scraping task queued.", "task_id": str(task.id)}
+
