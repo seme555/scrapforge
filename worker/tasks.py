@@ -48,3 +48,13 @@ def trigger_full_scrape(self):
     Total target: 1,147+ unique products, growing price_history on every run.
     """
     results = {}
+
+    for spider_name in ["ecommerce", "books"]:
+        result = _run_spider(spider_name)
+        status = "success" if result.returncode == 0 else "failed"
+        results[spider_name] = status
+        if result.returncode != 0:
+            # Log but continue â€” don't abort sibling spider
+            print(f"[WARNING] {spider_name} spider failed: {result.stderr[-500:]}")
+
+    return {"message": "Full scrape pipeline completed", "results": results}
