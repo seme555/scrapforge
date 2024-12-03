@@ -8,3 +8,13 @@ from worker.tasks import trigger_ecommerce_scrape, trigger_books_scrape, trigger
 
 
 app = FastAPI(
+    title="ScrapForge API",
+    description=(
+        "Distributed Price Intelligence API. "
+        "Triggers Scrapy/Playwright crawls via Celery and serves time-series price data from PostgreSQL."
+    ),
+    version="2.0.0"
+)
+
+
+@app.get("/")
