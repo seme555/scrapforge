@@ -28,3 +28,13 @@ def trigger_ecommerce_scrape(self):
         raise RuntimeError(f"ecommerce spider failed:\n{result.stderr[-2000:]}")
     return "ecommerce scrape completed successfully"
 
+
+@app.task(bind=True)
+def trigger_books_scrape(self):
+    """
+    Celery task: runs the books (books.toscrape.com) spider.
+    Target: 1,000 books across 50 genres.
+    """
+    result = _run_spider("books")
+    if result.returncode != 0:
+        raise RuntimeError(f"books spider failed:\n{result.stderr[-2000:]}")
