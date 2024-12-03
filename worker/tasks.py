@@ -38,3 +38,13 @@ def trigger_books_scrape(self):
     result = _run_spider("books")
     if result.returncode != 0:
         raise RuntimeError(f"books spider failed:\n{result.stderr[-2000:]}")
+    return "books scrape completed successfully"
+
+
+@app.task(bind=True)
+def trigger_full_scrape(self):
+    """
+    Celery task: runs ALL spiders sequentially for maximum data volume.
+    Total target: 1,147+ unique products, growing price_history on every run.
+    """
+    results = {}
