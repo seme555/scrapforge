@@ -28,3 +28,13 @@ def trigger_scrape():
     task = trigger_ecommerce_scrape.delay()
     return {"message": "E-commerce scraping task queued.", "task_id": str(task.id)}
 
+
+@app.post("/scrape/trigger/books", tags=["scraping"])
+def trigger_books():
+    """Dispatch an async Celery task to scrape books.toscrape.com (1,000 books)."""
+    task = trigger_books_scrape.delay()
+    return {"message": "Books scraping task queued.", "task_id": str(task.id)}
+
+
+@app.post("/scrape/trigger/all", tags=["scraping"])
+def trigger_all():
