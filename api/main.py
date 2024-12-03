@@ -38,3 +38,13 @@ def trigger_books():
 
 @app.post("/scrape/trigger/all", tags=["scraping"])
 def trigger_all():
+    """Dispatch an async Celery task to run ALL spiders for maximum data volume."""
+    task = trigger_full_scrape.delay()
+    return {"message": "Full pipeline scrape queued.", "task_id": str(task.id)}
+
+
+@app.get("/api/v1/products", tags=["products"])
+def get_products(
+    skip: int = 0,
+    limit: int = 100,
+    category: str | None = None,
