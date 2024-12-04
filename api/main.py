@@ -48,3 +48,13 @@ def get_products(
     skip: int = 0,
     limit: int = 100,
     category: str | None = None,
+    db: Session = Depends(get_db)
+):
+    """
+    List all tracked products with enriched metadata.
+    Filter by category (e.g. laptops, tablets, phones).
+    """
+    query = db.query(Product)
+    if category:
+        query = query.filter(Product.category == category)
+    products = query.order_by(Product.id).offset(skip).limit(limit).all()
