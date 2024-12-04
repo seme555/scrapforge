@@ -68,3 +68,13 @@ def get_products(
             "brand": p.brand,
             "description": p.description,
             "image_url": p.image_url,
+            "rating": p.rating,
+            "review_count": p.review_count,
+            "url": p.url,
+            "retailer": p.retailer.name if p.retailer else None,
+        }
+        for p in products
+    ]
+
+
+@app.get("/api/v1/products/{product_id}/prices", tags=["prices"])
