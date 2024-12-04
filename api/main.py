@@ -58,3 +58,13 @@ def get_products(
     if category:
         query = query.filter(Product.category == category)
     products = query.order_by(Product.id).offset(skip).limit(limit).all()
+
+    return [
+        {
+            "id": p.id,
+            "name": p.name,
+            "sku": p.sku,
+            "category": p.category,
+            "brand": p.brand,
+            "description": p.description,
+            "image_url": p.image_url,
