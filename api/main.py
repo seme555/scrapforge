@@ -78,3 +78,13 @@ def get_products(
 
 
 @app.get("/api/v1/products/{product_id}/prices", tags=["prices"])
+def get_product_prices(product_id: int, db: Session = Depends(get_db)):
+    """Return full time-series price history for a product, newest first."""
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found.")
+
+    prices = (
+        db.query(PriceHistory)
+        .filter(PriceHistory.product_id == product_id)
+        .order_by(desc(PriceHistory.scraped_at))
