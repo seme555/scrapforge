@@ -98,3 +98,13 @@ def get_product_prices(product_id: int, db: Session = Depends(get_db)):
                 "price": p.price,
                 "currency": p.currency,
                 "in_stock": p.in_stock,
+                "scraped_at": p.scraped_at,
+            }
+            for p in prices
+        ],
+    }
+
+
+@app.get("/api/v1/categories", tags=["products"])
+def get_categories(db: Session = Depends(get_db)):
+    """Return a summary of product counts per category."""
