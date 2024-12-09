@@ -88,3 +88,13 @@ def get_product_prices(product_id: int, db: Session = Depends(get_db)):
         db.query(PriceHistory)
         .filter(PriceHistory.product_id == product_id)
         .order_by(desc(PriceHistory.scraped_at))
+        .all()
+    )
+
+    return {
+        "product": {"id": product.id, "name": product.name, "sku": product.sku},
+        "price_history": [
+            {
+                "price": p.price,
+                "currency": p.currency,
+                "in_stock": p.in_stock,
