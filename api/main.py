@@ -108,3 +108,10 @@ def get_product_prices(product_id: int, db: Session = Depends(get_db)):
 @app.get("/api/v1/categories", tags=["products"])
 def get_categories(db: Session = Depends(get_db)):
     """Return a summary of product counts per category."""
+    from sqlalchemy import func
+    results = (
+        db.query(Product.category, func.count(Product.id).label("count"))
+        .group_by(Product.category)
+        .all()
+    )
+    return [{"category": r.category, "product_count": r.count} for r in results]
