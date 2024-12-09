@@ -18,3 +18,13 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+from core.database import DATABASE_URL, Base
+from core.models import Retailer, Product, PriceHistory
+
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
+target_metadata = Base.metadata
