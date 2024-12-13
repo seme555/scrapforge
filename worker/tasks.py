@@ -54,7 +54,7 @@ def trigger_full_scrape(self):
         status = "success" if result.returncode == 0 else "failed"
         results[spider_name] = status
         if result.returncode != 0:
-            # Log but continue â€” don't abort sibling spider
+            # Log but continue — don't abort sibling spider
             print(f"[WARNING] {spider_name} spider failed: {result.stderr[-500:]}")
 
     return {"message": "Full scrape pipeline completed", "results": results}

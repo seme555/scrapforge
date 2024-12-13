@@ -22,7 +22,7 @@ env/
 .scrapy/
 httpcache/
 
-# Alembic â€” keep versions tracked but skip pycache
+# Alembic — keep versions tracked but skip pycache
 alembic/__pycache__/
 alembic/versions/__pycache__/
 

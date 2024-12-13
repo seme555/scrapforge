@@ -25,7 +25,7 @@ class BooksSpider(scrapy.Spider):
     start_urls = ["https://books.toscrape.com/catalogue/page-1.html"]
 
     custom_settings = {
-        # No Playwright needed â€” this site is static HTML
+        # No Playwright needed — this site is static HTML
         "DOWNLOAD_HANDLERS": {},
         "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
         "CONCURRENT_REQUESTS": 16,
@@ -36,7 +36,7 @@ class BooksSpider(scrapy.Spider):
         """Parse a paginated book listing page."""
         books = response.css("article.product_pod")
         self.logger.info(
-            f"[BOOKS] {response.url} â€” {len(books)} books found"
+            f"[BOOKS] {response.url} — {len(books)} books found"
         )
 
         for book in books:
@@ -44,7 +44,7 @@ class BooksSpider(scrapy.Spider):
             if item:
                 yield item
 
-        # Follow pagination (50 pages Ã— 20 books = 1,000 total)
+        # Follow pagination (50 pages × 20 books = 1,000 total)
         next_page = response.css("li.next a::attr(href)").get()
         if next_page:
             yield response.follow(next_page, callback=self.parse)
@@ -64,7 +64,7 @@ class BooksSpider(scrapy.Spider):
         url = response.urljoin(link)
         sku = url.rstrip("/").split("/")[-2]  # slug is second-to-last segment
 
-        # Price â€” "Â£12.34" â†’ 12.34 USD equivalent for demo
+        # Price — "£12.34" → 12.34 USD equivalent for demo
         raw_price = book.css(".price_color::text").get("").strip()
         price = None
         if raw_price:

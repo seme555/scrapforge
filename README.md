@@ -1,24 +1,24 @@
 # ScrapForge
 
-> A production-grade, distributed web scraping pipeline for real-time e-commerce price tracking. Built with Scrapy, Playwright, Celery, FastAPI, PostgreSQL, and Redis â€” fully containerised with Docker.
+> A production-grade, distributed web scraping pipeline for real-time e-commerce price tracking. Built with Scrapy, Playwright, Celery, FastAPI, PostgreSQL, and Redis — fully containerised with Docker.
 
 ---
 
-## ðŸ“¸ Screenshots
+## 📸 Screenshots
 
 ### API Documentation (Swagger UI)
 ![Swagger UI](docs/screenshots/1_swagger_ui.png)
 
-### Live Products Endpoint â€” Enriched Data
+### Live Products Endpoint — Enriched Data
 ![Products API](docs/screenshots/4_enriched_products.png)
 
 ### Categories Summary Endpoint
 ![Categories API](docs/screenshots/2_categories_api.png)
 
-### pgAdmin â€” Database View (1,124 Products)
+### pgAdmin — Database View (1,124 Products)
 ![pgAdmin](docs/screenshots/5_pgadmin.png)
 
-> Shows `scraper_db` with all 4 tables (`alembic_version`, `price_history`, `products`, `retailers`) and the `products` table results â€” 1,124 total rows, query completed in 0.225s.
+> Shows `scraper_db` with all 4 tables (`alembic_version`, `price_history`, `products`, `retailers`) and the `products` table results — 1,124 total rows, query completed in 0.225s.
 
 **Tables in `scraper_db`:**
 | Table | Description |
@@ -29,35 +29,35 @@
 
 ---
 
-## ðŸ—ï¸ Architecture
+## 🏗️ Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                        Docker Compose                       â”‚
-â”‚                                                            â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   POST /scrape   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
-â”‚  â”‚          â”‚ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¶â”‚  Celery Worker        â”‚   â”‚
-â”‚  â”‚ FastAPI  â”‚                  â”‚  (Redis Broker)       â”‚   â”‚
-â”‚  â”‚ :8000    â”‚â—€â”€â”€ JSON â”€â”€â”€â”€â”€â”€â”€â”€ â”‚                       â”‚   â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚   â”‚
-â”‚       â”‚                        â”‚  â”‚ Scrapy + Play-  â”‚  â”‚   â”‚
-â”‚       â”‚                        â”‚  â”‚ wright Spiders  â”‚  â”‚   â”‚
-â”‚       â–¼                        â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚   â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
-â”‚  â”‚PostgreSQLâ”‚â—€â”€â”€â”€â”€ SQLAlchemy  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜               â”‚
-â”‚  â”‚  :5432   â”‚      ORM + Alembic                           â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                              â”‚
-â”‚                                                            â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                              â”‚
-â”‚  â”‚  Redis   â”‚  â† Task Queue / Result Backend               â”‚
-â”‚  â”‚  :6379   â”‚                                              â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                              â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌────────────────────────────────────────────────────────────┐
+│                        Docker Compose                       │
+│                                                            │
+│  ┌──────────┐   POST /scrape   ┌──────────────────────┐   │
+│  │          │ ────────────────▶│  Celery Worker        │   │
+│  │ FastAPI  │                  │  (Redis Broker)       │   │
+│  │ :8000    │◀── JSON ──────── │                       │   │
+│  └──────────┘                  │  ┌─────────────────┐  │   │
+│       │                        │  │ Scrapy + Play-  │  │   │
+│       │                        │  │ wright Spiders  │  │   │
+│       ▼                        │  └────────┬────────┘  │   │
+│  ┌──────────┐                  └───────────┼───────────┘   │
+│  │PostgreSQL│◀──── SQLAlchemy  ────────────┘               │
+│  │  :5432   │      ORM + Alembic                           │
+│  └──────────┘                                              │
+│                                                            │
+│  ┌──────────┐                                              │
+│  │  Redis   │  ← Task Queue / Result Backend               │
+│  │  :6379   │                                              │
+│  └──────────┘                                              │
+└────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## âš™ï¸ Tech Stack
+## ⚙️ Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -73,46 +73,46 @@
 
 ---
 
-## ðŸ—‚ï¸ Project Structure
+## 🗂️ Project Structure
 
 ```
 scrapforge/
-â”œâ”€â”€ docker-compose.yml          # All 4 services: Postgres, Redis, API, Worker
-â”œâ”€â”€ Dockerfile                  # Python app image (Playwright-ready)
-â”œâ”€â”€ requirements.txt            # Pinned dependencies
-â”œâ”€â”€ .env                        # Local environment variables
-â”‚
-â”œâ”€â”€ alembic/                    # Database migration scripts
-â”‚   â”œâ”€â”€ env.py
-â”‚   â””â”€â”€ versions/               # Auto-generated migration files
-â”‚
-â”œâ”€â”€ core/
-â”‚   â”œâ”€â”€ database.py             # SQLAlchemy engine & session factory
-â”‚   â””â”€â”€ models.py               # ORM models: Retailer, Product, PriceHistory
-â”‚
-â”œâ”€â”€ scraper/
-â”‚   â”œâ”€â”€ settings.py             # Scrapy + Playwright config
-â”‚   â”œâ”€â”€ items.py                # Scrapy Items + Pydantic validation schema
-â”‚   â”œâ”€â”€ middlewares.py          # User-Agent rotation (anti-bot)
-â”‚   â”œâ”€â”€ pipelines.py            # Validation pipeline + PostgreSQL write pipeline
-â”‚   â””â”€â”€ spiders/
-â”‚       â”œâ”€â”€ ecommerce_spider.py # Playwright spider â†’ webscraper.io (electronics)
-â”‚       â””â”€â”€ books_spider.py     # Fast HTTP spider â†’ books.toscrape.com (1,000 books)
-â”‚
-â”œâ”€â”€ worker/
-â”‚   â”œâ”€â”€ celery_app.py           # Celery app config, Redis broker, Beat schedule
-â”‚   â””â”€â”€ tasks.py                # 3 Celery tasks: ecommerce, books, full pipeline
-â”‚
-â”œâ”€â”€ api/
-â”‚   â””â”€â”€ main.py                 # FastAPI router with all endpoints
-â”‚
-â””â”€â”€ docs/
-    â””â”€â”€ screenshots/            # Pipeline documentation screenshots
+├── docker-compose.yml          # All 4 services: Postgres, Redis, API, Worker
+├── Dockerfile                  # Python app image (Playwright-ready)
+├── requirements.txt            # Pinned dependencies
+├── .env                        # Local environment variables
+│
+├── alembic/                    # Database migration scripts
+│   ├── env.py
+│   └── versions/               # Auto-generated migration files
+│
+├── core/
+│   ├── database.py             # SQLAlchemy engine & session factory
+│   └── models.py               # ORM models: Retailer, Product, PriceHistory
+│
+├── scraper/
+│   ├── settings.py             # Scrapy + Playwright config
+│   ├── items.py                # Scrapy Items + Pydantic validation schema
+│   ├── middlewares.py          # User-Agent rotation (anti-bot)
+│   ├── pipelines.py            # Validation pipeline + PostgreSQL write pipeline
+│   └── spiders/
+│       ├── ecommerce_spider.py # Playwright spider → webscraper.io (electronics)
+│       └── books_spider.py     # Fast HTTP spider → books.toscrape.com (1,000 books)
+│
+├── worker/
+│   ├── celery_app.py           # Celery app config, Redis broker, Beat schedule
+│   └── tasks.py                # 3 Celery tasks: ecommerce, books, full pipeline
+│
+├── api/
+│   └── main.py                 # FastAPI router with all endpoints
+│
+└── docs/
+    └── screenshots/            # Pipeline documentation screenshots
 ```
 
 ---
 
-## ðŸš€ Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -123,7 +123,7 @@ Make sure you have the following installed:
 
 ---
 
-### Step 1 â€” Clone the Repository
+### Step 1 — Clone the Repository
 
 ```bash
 git clone https://github.com/seme555/scrapforge.git
@@ -132,7 +132,7 @@ cd scrapforge
 
 ---
 
-### Step 2 â€” Configure Environment Variables
+### Step 2 — Configure Environment Variables
 
 The `.env` file is already set up with local defaults. No changes needed for local development:
 
@@ -147,7 +147,7 @@ REDIS_URL=redis://redis:6379/0
 
 ---
 
-### Step 3 â€” Build and Start All Services
+### Step 3 — Build and Start All Services
 
 ```bash
 docker compose up -d --build
@@ -160,7 +160,7 @@ This starts **4 containers**:
 | `scrapforge_db` | PostgreSQL 15 | `5432` |
 | `scrapforge_redis` | Redis 7 | `6379` |
 | `scrapforge_api` | FastAPI | `8000` |
-| `scrapforge_worker` | Celery Worker | â€” |
+| `scrapforge_worker` | Celery Worker | — |
 
 Verify all are running:
 ```bash
@@ -169,7 +169,7 @@ docker ps
 
 ---
 
-### Step 4 â€” Apply Database Migrations
+### Step 4 — Apply Database Migrations
 
 Run once after first startup to create all tables:
 
@@ -183,44 +183,44 @@ docker exec scrapforge_api bash -c "alembic upgrade head"
 
 ---
 
-### Step 5 â€” Trigger Your First Scrape
+### Step 5 — Trigger Your First Scrape
 
-**Option A â€” Full pipeline (all spiders, recommended):**
+**Option A — Full pipeline (all spiders, recommended):**
 ```bash
 curl -X POST http://localhost:8000/scrape/trigger/all
 ```
 
-**Option B â€” Electronics only (webscraper.io):**
+**Option B — Electronics only (webscraper.io):**
 ```bash
 curl -X POST http://localhost:8000/scrape/trigger
 ```
 
-**Option C â€” Books only (books.toscrape.com, 1,000 books):**
+**Option C — Books only (books.toscrape.com, 1,000 books):**
 ```bash
 curl -X POST http://localhost:8000/scrape/trigger/books
 ```
 
-> The scrape runs **asynchronously**. The API returns immediately with a `task_id`. The Celery worker processes the job in the background (usually 15â€“60 seconds depending on network).
+> The scrape runs **asynchronously**. The API returns immediately with a `task_id`. The Celery worker processes the job in the background (usually 15–60 seconds depending on network).
 
 ---
 
-### Step 6 â€” View the Results
+### Step 6 — View the Results
 
 Open your browser and visit:
 
 | URL | Description |
 |---|---|
-| [`http://localhost:8000/docs`](http://localhost:8000/docs) | **Swagger UI** â€” Interactive API docs |
+| [`http://localhost:8000/docs`](http://localhost:8000/docs) | **Swagger UI** — Interactive API docs |
 | [`http://localhost:8000/api/v1/products`](http://localhost:8000/api/v1/products) | All scraped products (JSON) |
 | [`http://localhost:8000/api/v1/categories`](http://localhost:8000/api/v1/categories) | Product count by category |
 | [`http://localhost:8000/api/v1/products/1/prices`](http://localhost:8000/api/v1/products/1/prices) | Price history for product ID 1 |
 
 ---
 
-## ðŸ˜ Connecting pgAdmin (Visual Database Browser)
+## 🐘 Connecting pgAdmin (Visual Database Browser)
 
 1. Install and open [pgAdmin](https://www.pgadmin.org/download/)
-2. Right-click **Servers** â†’ **Register** â†’ **Server...**
+2. Right-click **Servers** → **Register** → **Server...**
 3. Fill in the connection details:
 
 | Field | Value |
@@ -232,8 +232,8 @@ Open your browser and visit:
 | **Password** | `scraper_pass` |
 | **Database** | `scraper_db` |
 
-4. Expand: `ScrapForge â†’ Databases â†’ scraper_db â†’ Schemas â†’ public â†’ Tables`
-5. Right-click any table â†’ **View/Edit Data â†’ All Rows**
+4. Expand: `ScrapForge → Databases → scraper_db → Schemas → public → Tables`
+5. Right-click any table → **View/Edit Data → All Rows**
 
 **Useful SQL queries to run in pgAdmin:**
 ```sql
@@ -256,7 +256,7 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 
 ---
 
-## ðŸ“¡ API Reference
+## 📡 API Reference
 
 ### Scraping Endpoints
 
@@ -264,17 +264,17 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 |---|---|---|
 | `POST` | `/scrape/trigger` | Run electronics spider (webscraper.io) |
 | `POST` | `/scrape/trigger/books` | Run books spider (1,000 books) |
-| `POST` | `/scrape/trigger/all` | Run **all spiders** â€” maximum data |
+| `POST` | `/scrape/trigger/all` | Run **all spiders** — maximum data |
 
 ### Data Endpoints
 
 | Method | Endpoint | Query Params | Description |
 |---|---|---|---|
 | `GET` | `/api/v1/products` | `?skip=0&limit=100&category=laptops` | List all products with enriched metadata |
-| `GET` | `/api/v1/categories` | â€” | Product counts per category |
-| `GET` | `/api/v1/products/{id}/prices` | â€” | Full price history for one product |
+| `GET` | `/api/v1/categories` | — | Product counts per category |
+| `GET` | `/api/v1/products/{id}/prices` | — | Full price history for one product |
 
-### Sample Response â€” `/api/v1/products`
+### Sample Response — `/api/v1/products`
 ```json
 [
   {
@@ -295,15 +295,15 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 
 ---
 
-## ðŸ•·ï¸ Spiders
+## 🕷️ Spiders
 
-### `ecommerce` â€” Electronics (webscraper.io)
+### `ecommerce` — Electronics (webscraper.io)
 - **Rendering:** Playwright (handles JavaScript SPAs)
 - **Categories:** Laptops, Tablets, Phones, Touch Phones
 - **Products:** ~147 unique items
 - **Trigger:** `POST /scrape/trigger`
 
-### `books` â€” Books to Scrape (books.toscrape.com)
+### `books` — Books to Scrape (books.toscrape.com)
 - **Rendering:** Standard HTTP (high-performance, no JS needed)
 - **Categories:** 50 genres (Fiction, Mystery, Science, etc.)
 - **Products:** 1,000 unique books
@@ -311,16 +311,16 @@ SELECT ph.price, ph.scraped_at FROM price_history ph WHERE product_id = 1 ORDER 
 
 ---
 
-## ðŸ›¡ï¸ Anti-Bot Measures
+## 🛡️ Anti-Bot Measures
 
-- **User-Agent Rotation** â€” Random browser User-Agent on every request
-- **Playwright Rendering** â€” Full Chrome browser for JS-heavy pages
-- **Rate Limiting** â€” Configurable download delay between requests
-- **Proxy Scaffolding** â€” `ProxyRotatorMiddleware` ready for residential proxy integration
+- **User-Agent Rotation** — Random browser User-Agent on every request
+- **Playwright Rendering** — Full Chrome browser for JS-heavy pages
+- **Rate Limiting** — Configurable download delay between requests
+- **Proxy Scaffolding** — `ProxyRotatorMiddleware` ready for residential proxy integration
 
 ---
 
-## ðŸ“ˆ Data Growth Pattern
+## 📈 Data Growth Pattern
 
 Every time you call `/scrape/trigger/all`, the system:
 1. Re-scrapes **all** product pages
@@ -339,7 +339,7 @@ done
 
 ---
 
-## ðŸ”„ Stopping and Restarting
+## 🔄 Stopping and Restarting
 
 ```bash
 # Stop all services (keeps data)
@@ -354,7 +354,7 @@ docker compose down -v
 
 ---
 
-## ðŸ§° Useful Docker Commands
+## 🧰 Useful Docker Commands
 
 ```bash
 # View live logs from the Celery worker
@@ -372,41 +372,41 @@ docker exec scrapforge_worker bash -c "python -m scrapy crawl books"
 
 ---
 
-## ðŸ—„ï¸ Database Schema
+## 🗄️ Database Schema
 
 ```
 retailers
-â”œâ”€â”€ id (PK)
-â”œâ”€â”€ name
-â”œâ”€â”€ domain (unique)
-â””â”€â”€ created_at
+├── id (PK)
+├── name
+├── domain (unique)
+└── created_at
 
 products
-â”œâ”€â”€ id (PK)
-â”œâ”€â”€ retailer_id (FK â†’ retailers)
-â”œâ”€â”€ name
-â”œâ”€â”€ url (unique)
-â”œâ”€â”€ sku
-â”œâ”€â”€ category          â† indexed for fast filtering
-â”œâ”€â”€ description
-â”œâ”€â”€ image_url
-â”œâ”€â”€ rating
-â”œâ”€â”€ review_count
-â”œâ”€â”€ brand
-â”œâ”€â”€ created_at
-â””â”€â”€ updated_at
+├── id (PK)
+├── retailer_id (FK → retailers)
+├── name
+├── url (unique)
+├── sku
+├── category          ← indexed for fast filtering
+├── description
+├── image_url
+├── rating
+├── review_count
+├── brand
+├── created_at
+└── updated_at
 
 price_history
-â”œâ”€â”€ id (PK, BigInteger)
-â”œâ”€â”€ product_id (FK â†’ products)
-â”œâ”€â”€ price
-â”œâ”€â”€ currency
-â”œâ”€â”€ in_stock
-â””â”€â”€ scraped_at        â† indexed for time-series queries
+├── id (PK, BigInteger)
+├── product_id (FK → products)
+├── price
+├── currency
+├── in_stock
+└── scraped_at        ← indexed for time-series queries
 ```
 
 ---
 
-## ðŸ“‹ License
+## 📋 License
 
-MIT License â€” free to use, modify and distribute.
+MIT License — free to use, modify and distribute.

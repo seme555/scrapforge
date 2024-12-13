@@ -56,7 +56,7 @@ class EcommerceSpider(scrapy.Spider):
 
         products = response.css(".thumbnail")
         self.logger.info(
-            f"[{category.upper()}] {response.url} â€” {len(products)} products found"
+            f"[{category.upper()}] {response.url} — {len(products)} products found"
         )
 
         for product in products:
@@ -93,7 +93,7 @@ class EcommerceSpider(scrapy.Spider):
         link = product.css("a.title::attr(href)").get()
 
         if not name or not link:
-            self.logger.debug("Skipping product card â€” missing name or link")
+            self.logger.debug("Skipping product card — missing name or link")
             return None
 
         url = response.urljoin(link)

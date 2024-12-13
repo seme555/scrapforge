@@ -32,7 +32,7 @@ class Product(Base):
     category = Column(String(100), index=True)            # NEW: e.g. "laptops", "tablets"
     description = Column(Text, nullable=True)             # NEW: product description
     image_url = Column(String(1000), nullable=True)       # NEW: product image URL
-    rating = Column(Float, nullable=True)                  # NEW: star rating 0.0â€“5.0
+    rating = Column(Float, nullable=True)                  # NEW: star rating 0.0–5.0
     review_count = Column(Integer, nullable=True)          # NEW: number of reviews
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
