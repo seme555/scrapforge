@@ -1,5 +1,7 @@
 # ScrapForge
 
+![CI](https://github.com/seme555/scrapforge/actions/workflows/ci.yml/badge.svg)
+
 > A production-grade, distributed web scraping pipeline for real-time e-commerce price tracking. Built with Scrapy, Playwright, Celery, FastAPI, PostgreSQL, and Redis — fully containerised with Docker.
 
 ---
